@@ -1,12 +1,12 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
-import com.proyect.CodeShareSpace.dto.CourseDto;
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.CourseDTO;
+import com.proyect.CodeShareSpace.dto.UserDTO;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
-import com.proyect.CodeShareSpace.mapper.UserMapper;
+import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.User;
-import com.proyect.CodeShareSpace.repository.CourseRepository;
+import com.proyect.CodeShareSpace.repository.ICourseRepository;
 import com.proyect.CodeShareSpace.service.interfaces.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,21 +18,21 @@ import java.util.Optional;
 public class CourseServiceImpl implements ICourseService {
 
     @Autowired
-    private CourseRepository courseRepository;
+    private ICourseRepository ICourseRepository;
     @Autowired
-    private UserMapper userMapper;
+    private IUserMapper IUserMapper;
     @Autowired
     private ICourseMapper iCourseMapper;
 
     @Override
-    public List<UserDto> findUsersByCourseId(Long courseId) {
-        List<User> users = courseRepository.findUsersByCourseId(courseId);
-        return userMapper.usersToUsersDto(users);
+    public List<UserDTO> findUsersByCourseId(Long courseId) {
+        List<User> users = ICourseRepository.findUsersByCourseId(courseId);
+        return IUserMapper.usersToUsersDto(users);
     }
 
     @Override
-    public CourseDto findById(Long courseId) {
-        Optional<Course> course = courseRepository.findById(courseId);
+    public CourseDTO findById(Long courseId) {
+        Optional<Course> course = ICourseRepository.findById(courseId);
         return iCourseMapper.courseToCourseDto(course.get());
     }
 }

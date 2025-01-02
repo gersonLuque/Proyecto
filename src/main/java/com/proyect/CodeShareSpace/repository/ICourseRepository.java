@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.repository;
 
+import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface ICourseRepository extends JpaRepository<Course, Long> {
+
+    @Query("SELECT u FROM User u JOIN u.courses c WHERE c.courseId = :courseId")
+    List<User> findUsersByCourseId(@Param("courseId") Long courseId);
 
 }

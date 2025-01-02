@@ -4,8 +4,6 @@ import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import lombok.*;
 
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -13,7 +11,7 @@ import java.util.Set;
 @Getter @Setter
 @EqualsAndHashCode
 @ToString
-public class UserDto {
+public class UserDTO {
     private Long userId;
     private String username;
     private String password;

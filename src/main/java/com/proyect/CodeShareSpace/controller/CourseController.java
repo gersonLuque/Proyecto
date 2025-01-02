@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.controller;
 
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.UserDTO;
 import com.proyect.CodeShareSpace.service.interfaces.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +14,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/courses")
-public class CourseController {
+public class CourseController { // Es necesario implementar la interfaz "service/interfaces/ICourseService"
 
     @Autowired
     private ICourseService iCourseService;
 
+    public CourseController(ICourseService iCourseService) {
+        this.iCourseService = iCourseService;
+    }
+
     @GetMapping("{courseId}/users")
-    public ResponseEntity<List<UserDto>> getUsersByCourse(@PathVariable Long courseId){
-        List<UserDto> users = iCourseService.findUsersByCourseId(courseId);
+    public ResponseEntity<List<UserDTO>> getUsersByCourse(@PathVariable Long courseId){
+        List<UserDTO> users = iCourseService.findUsersByCourseId(courseId);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
 }

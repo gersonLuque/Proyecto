@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseDto {
+public class CourseDTO {
     private Long courseId;
     private String name;
     private Set<User> users = new HashSet<>();
